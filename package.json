@@ -1,0 +1,17 @@
+{
+  "name": "mag-rig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "js-beautify": "^1.7.4",
+    "mkdirp": "^0.5.1",
+    "tabletop": "^1.5.2"
+  }
+}
