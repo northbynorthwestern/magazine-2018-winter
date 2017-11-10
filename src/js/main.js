@@ -13,8 +13,9 @@ var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1p801fUTp-APP
 Tabletop.init( { key: publicSpreadsheetURL, callback: onLoad});
 
 //mag page template
-var articlePage = "<script id='entry-template' type='text/x-handlebars-template'></script>"+
-"<head>"+
+var articlePage =
+			"<script id='entry-template' type='text/x-handlebars-template'></script>"+
+			"<head>"+
 	    "<meta property='og:site_name' content='North by Northwestern Fall 2017 Magazine' />"+
 	    "<meta property='fb:app_id' content='829210430557671'/>"+
 			"<meta property='og:url'                content='http://apps.northbynorthwestern.com/magazine/2017/fall/{{section}}/{{slug}}/' />"+
@@ -84,13 +85,13 @@ function onLoad(data, tabletop) {
 
 		//create the directory if not already created
 		var dir = 'dist/'+context.section+'/'+context.slug;
-		mkdirp(dir, function (err) {
+		mkdirp.sync(dir, function (err) {
 				if (err) console.error(err)
 				else console.log('pow!')
 		});
 
 		//create an html file in the directory
-		var fileName = './../../dist/'+context.section+'/'+context.slug+'/index.html';
+		var fileName = './dist/'+context.section+'/'+context.slug+'/index.html';
 		var stream = fs.createWriteStream(fileName);
 		var result = template(context);
 		stream.write(result);
