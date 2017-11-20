@@ -2,9 +2,8 @@
 var Tabletop = require('tabletop');
 var Handlebars = require('handlebars');
 var fs = require('fs');
-		// require('./../templates/layouts/default.hbs');
 var mkdirp = require('mkdirp');
-var beautify_html = require('js-beautify').html;
+// var beautify_html = require('js-beautify').html;
 
 //grab spreadsheet
 var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1p801fUTp-APPQYt5eh4uFoGjdChwwBwVihHVS-Y6X0Y/edit?usp=sharing'
