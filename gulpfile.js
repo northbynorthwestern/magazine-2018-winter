@@ -15,9 +15,9 @@ db.connect({
 })
 
 const config = {
-	googleDocId: '1D8InGHDtL7ZBnQRl9PYKA_-jpYCSl0IxMdrKfn_G2L0', // required
-	googleClientId: '297513769020-54hfgno50v0msbnq2d5ol97idfmobbvs.apps.googleusercontent.com', // required
-	googleClientSecret: 'eZ6-Y8zGt0sEeqlTawtMJ7CR', // required
+	googleDocId: GDOC_ID, // required
+	googleClientId: GDOC_CLIENT_ID, // required
+	googleClientSecret: GDOC_CLIENT_SECRET, // required
 	redirectPort: '6006', // defaults to 6006
 	exportPath: 'data.json',
 	tokenPath: 'token.json'
