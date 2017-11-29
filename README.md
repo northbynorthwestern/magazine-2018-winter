@@ -3,9 +3,8 @@ Static site generator for creating the online version of NBN's quarterly magazin
 
 ### To Use:
 1. `git clone https://github.com/northbynorthwestern/mag-rig.git`
-2. `cd mag-rig/src/js`
-3. Ensure `dist` folder exists. The directory should contain `universal.css` and `vidInline` only.
-4. Run `node main.js` to generate file structure in `dist` folder
+2. Ensure `dist` folder exists in root directory. The directory should contain `universal.css` and `vidInline` only.
+3. Run `node src/js/main.js` to generate file structure in `dist` folder
 
 ### Next steps:
 * Move article templates out of `main.js` file and into `*.hbs` files in `templates` directory
