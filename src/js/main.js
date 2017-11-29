@@ -3,18 +3,33 @@ var Tabletop = require('tabletop');
 var Handlebars = require('handlebars');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
-// var beautify_html = require('js-beautify').html;
+var prettifyHtml = require('prettify-html');
+
+//initialize archieml-pipe
+// const gulp = require('gulp');
+// const archiePipe = require('archieml-pipe').default;
 
 //grab spreadsheet
 var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1p801fUTp-APPQYt5eh4uFoGjdChwwBwVihHVS-Y6X0Y/edit?usp=sharing'
 
-//initialize
+//initialize spreadsheet
 Tabletop.init( { key: publicSpreadsheetURL, callback: onLoad});
 
 //mag page template for images
 var imgHtml =
 			"<script id='entry-template' type='text/x-handlebars-template'></script>"+
 			"<head>"+
+
+			"<!-- Global site tag (gtag.js) - Google Analytics -->"+
+			"<script async src='https://www.googletagmanager.com/gtag/js?id=UA-100076603-1'></script>"+
+			"<script>"+
+			  "window.dataLayer = window.dataLayer || [];"+
+			  "function gtag(){dataLayer.push(arguments);}"+
+			  "gtag('js', new Date());"+
+
+			  "gtag('config', 'UA-100076603-1');"+
+			"</script>"+
+
 	    "<meta property='og:site_name' content='North by Northwestern Fall 2017 Magazine' />"+
 	    "<meta property='fb:app_id' content='829210430557671'/>"+
 			"<meta property='og:url'                content='http://apps.northbynorthwestern.com/magazine/2017/fall/{{section}}/{{slug}}/' />"+
@@ -61,17 +76,52 @@ var imgHtml =
                 "<div class='headline'>"+
                     "<h1 class='hed'>{{title}}</h1>"+
                 		"<h2 class='dek'>{{subtitle}}</h2>"+
-                		"<h3 class='byline'>{{byline}}</h3>"+
+                		"<h3 class='byline'><a href='{{byline_url}}' target='_blank'>{{byline}}</h3>"+
                 "</div>"+
-                "<p class='photo-byline byline'>Image by <b>maxinefilfilfilfilfilfilf</b> / North by Northwestern</p>"+
+                "<p class='photo-byline byline'>Image by <a href='{{media_author_url}}' target='_blank'><b>{{media_byline}}</b></a> / North by Northwestern</p>"+
             "</header>"+
 
             "<div class='blackboard'>"+
-                "<p class='lead'>PUT IN FIRST PARAGRAPH OF ARTICLE HERE</p>"+
-                "<p>COPY PASTE ENTIRE REST OF ARTICLE (WITH P-TAGS) RIGHT HERE PLEASE.</p>"+
+                "<p class='lead'>{{article_lead}}</p>"+
+                "<div class='articlebody'>{{article_body}}</div>"+
             "</div>"+
         "</article>"+
-    "</main>"+
+
+				"<footer class='related-articles related-total-2' id='related-articles'>"+
+				   "<h1>Related articles</h1>"+
+				    "<div class='related-articles-row related-total-2'>"+
+				        "<a class='related-article-item item-1' href='{{related_left_link}}' target='_blank'>"+
+				            "<h1 class='head'>{{related_left_hed}}"+
+				            "</h1>"+
+				            "<p class='byline'>By {{related_left_byline}}</p>"+
+				            "<p class='origin'>{{related_left_date}}</p>"+
+				        "</a>"+
+				        "<a class='related-article-item item-2' href='{{related_right_link}}' target='_blank'>"+
+				            "<h1 class='head'>{{related_right_hed}}"+
+				            "</h1>"+
+				            "<p class='byline'>By {{related_right_byline}}</p>"+
+				            "<p class='origin'>{{related_right_date}}</p>"+
+				        "</a>"+
+				    "</div>"+
+				"</footer>"+
+
+
+				"</main>"+
+
+				"<footer class='nbn-footer'>"+
+				"<div class='footer-block'>"+
+				"<div class='footer-item footer-left'>"+
+				    "<p>Produced by <b>Maxine Whitely</b> for North by Northwestern</p>"+
+				"</div>"+
+				"<div class='footer-item footer-center footer-links'>"+
+				    "<a data-scroll data-options='{'updateURL': false}' href='#top'>Back to top</a>"+
+				    "<a href='../../index.html'> &laquo; Back to magazine </a>"+
+				"</div>"+
+				"<div class='footer-item footer-right'>"+
+				    "<p>&copy; North by Northwestern, November 30, 2017.</p> <p>All rights reserved.</p>"+
+				"</div>"+
+				"</div>"+
+				"</footer>"+
 	"</script>"
 
 
@@ -79,6 +129,17 @@ var imgHtml =
 var vidHtml =
 	"<script id='entry-template' type='text/x-handlebars-template'></script>"+
 	"<head>"+
+
+		"<!-- Global site tag (gtag.js) - Google Analytics -->"+
+		"<script async src='https://www.googletagmanager.com/gtag/js?id=UA-100076603-1'></script>"+
+		"<script>"+
+			"window.dataLayer = window.dataLayer || [];"+
+			"function gtag(){dataLayer.push(arguments);}"+
+			"gtag('js', new Date());"+
+
+			"gtag('config', 'UA-100076603-1');"+
+		"</script>"+
+
 		"<meta property='og:site_name' content='North by Northwestern Fall 2017 Magazine' />"+
 		"<meta property='fb:app_id' content='829210430557671'/>"+
 		"<meta property='og:url'                content='http://apps.northbynorthwestern.com/magazine/2017/fall/{{section}}/{{slug}}/' />"+
@@ -165,10 +226,10 @@ var vidHtml =
                 	"<div class='headline'>"+
 										"<h1 class='hed'>{{title}}</h1>"+
 										"<h2 class='dek'>{{subtitle}}</h2>"+
-										"<h3 class='byline'>{{byline}}</h3>"+
+										"<h3 class='byline'><a href='{{byline_url}}' target='_blank'>{{byline}}</h3>"+
 									"</div>"+
 								"</div>"+
-                "<p class='photo-byline byline'>Video by <b>{{media_byline}}</b> / North by Northwestern</p>"+
+                "<p class='photo-byline byline'>Video by <a href='{{media_author_url}}' target='_blank'><b>{{media_byline}}</b></a> / North by Northwestern</p>"+
 
 								"<script src='../../vidInline/iphone-inline-video.min.js'>"+
 										"var vid = document.getElementById('myVideo');"+
@@ -180,11 +241,46 @@ var vidHtml =
 						"</header>"+
 
             "<div class='blackboard'>"+
-                "<p class='lead'>PUT IN FIRST PARAGRAPH OF ARTICLE HERE</p>"+
-                "<p>COPY PASTE ENTIRE REST OF ARTICLE (WITH P-TAGS) RIGHT HERE PLEASE.</p>"+
+                "<p class='lead'>{{article_lead}}</p>"+
+                "<div>{{article_body}}</div>"+
             "</div>"+
         "</article>"+
-    "</main>"+
+
+				"<footer class='related-articles related-total-2' id='related-articles'>"+
+				   "<h1>Related articles</h1>"+
+				    "<div class='related-articles-row related-total-2'>"+
+				        "<a class='related-article-item item-1' href='{{related_left_link}}' target='_blank'>"+
+				            "<h1 class='head'>{{related_left_hed}}"+
+				            "</h1>"+
+				            "<p class='byline'>By {{related_left_byline}}</p>"+
+				            "<p class='origin'>{{related_left_date}}</p>"+
+				        "</a>"+
+				        "<a class='related-article-item item-2' href='{{related_right_link}}' target='_blank'>"+
+				            "<h1 class='head'>{{related_right_hed}}"+
+				            "</h1>"+
+				            "<p class='byline'>By {{related_right_byline}}</p>"+
+				            "<p class='origin'>{{related_right_date}}</p>"+
+				        "</a>"+
+				    "</div>"+
+				"</footer>"+
+
+
+				"</main>"+
+
+				"<footer class='nbn-footer'>"+
+				"<div class='footer-block'>"+
+				"<div class='footer-item footer-left'>"+
+				    "<p>Produced by <b>Maxine Whitely</b> for North by Northwestern</p>"+
+				"</div>"+
+				"<div class='footer-item footer-center footer-links'>"+
+				    "<a data-scroll data-options='{'updateURL': false}' href='#top'>Back to top</a>"+
+				    "<a href='../../index.html'> &laquo; Back to magazine </a>"+
+				"</div>"+
+				"<div class='footer-item footer-right'>"+
+				    "<p>&copy; North by Northwestern, November 30, 2017.</p> <p>All rights reserved.</p>"+
+				"</div>"+
+				"</div>"+
+				"</footer>"+
 	"</script>"
 
 
@@ -203,30 +299,62 @@ function onLoad(data, tabletop) {
 			title: stories[x]['HED'],
 			subtitle: stories[x]['DEK'],
 			byline: stories[x]['BYLINE'],
+			byline_url: stories[x]['AUTHOR-LINK'],
 			media_type: stories[x]['TOP-GRAPHIC-TYPE'],
 			media_link: stories[x]['MEDIA-LINK'],
-			media_byline: stories[x]['MEDIA-BYLINE']
+			media_byline: stories[x]['MEDIA-BYLINE'],
+			media_author_url: stories[x]['MEDIA-AUTHOR-LINK'],
+			front_preview: stories[x]['FRONT-PREVIEW'],
+			article_lead: stories[x]['ARTICLE-LEAD'],
+			article_body: stories[x]['ARTICLE-BODY'],
+
+			related_left_link: stories[x]['RELATED-LEFT-LINK'],
+			related_left_hed: stories[x]['RELATED-LEFT-HED'],
+			related_left_byline: stories[x]['RELATED-LEFT-BYLINE'],
+			related_left_date: stories[x]['RELATED-LEFT-DATE'],
+			related_right_link: stories[x]['RELATED-RIGHT-LINK'],
+			related_right_hed: stories[x]['RELATED-RIGHT-HED'],
+			related_right_byline: stories[x]['RELATED-RIGHT-BYLINE'],
+			related_right_date: stories[x]['RELATED-RIGHT-DATE']
 		}
 		// formatted.push(context);
 
 		//create the directory if not already created
-		var dir = 'dist/'+context.section+'/'+context.slug;
+		var dir = './dist/'+context.section+'/'+context.slug;
 		mkdirp.sync(dir, function (err) {
 				if (err) console.error(err)
 				else console.log('pow!')
 		});
+
+		// const config = {
+		// 	googleDocId: '1D8InGHDtL7ZBnQRl9PYKA_-jpYCSl0IxMdrKfn_G2L0', // required
+		// 	googleClientId: '297513769020-54hfgno50v0msbnq2d5ol97idfmobbvs.apps.googleusercontent.com', // required
+		// 	googleClientSecret: 'eZ6-Y8zGt0sEeqlTawtMJ7CR', // required
+		// 	redirectPort: '6006', // defaults to 6006
+		// 	// exportPath: './data.json',
+		// 	// tokenPath: './token.json'
+		// 	exportPath: './dist/'+context.section+'/'+context.slug+'/data.json', // defaults to ./data.json
+		// 	tokenPath: './dist/'+context.section+'/'+context.slug+'/token.json', // defaults to ./archie-token.json
+		// };
+    //
+		// gulp.task('archie', (cb) => {
+		// 	archiePipe(config);
+		// 	cb();
+		// });
 
 		//create an html file in the directory
 		var fileName = './dist/'+context.section+'/'+context.slug+'/index.html';
 		var stream = fs.createWriteStream(fileName);
 		if (context.media_type == 'photo'){
 			var imgResult = imgTemplate(context);
-			stream.write(imgResult);
+			var prettifiedImgResult = prettifyHtml(imgResult);
+			stream.write(prettifiedImgResult);
 			stream.end();
 		}
 		else if (context.media_type == 'video'){
 			var vidResult = vidTemplate(context);
-			stream.write(vidResult);
+			var prettifiedVidResult = prettifyHtml(vidResult);
+			stream.write(prettifiedVidResult);
 			stream.end();
 		}
 	}
