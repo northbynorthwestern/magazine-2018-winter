@@ -726,6 +726,13 @@ article header.article-meta{
     padding-top: 200px;
     padding-bottom: 30px;
 }
+
+@media screen and (max-width 800px) {
+  article header.article-meta{
+    padding-top: 0;
+  }
+}
+
 article header.article-meta a{
     color: inherit;
     text-decoration: underline;
