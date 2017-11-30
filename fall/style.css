@@ -1,0 +1,214 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,300,400italic,300italic|Merriweather+Sans:400,300,400italic,300italic|Open+Sans:400,700,600,300,400italic,300italic,600italic|Raleway:800,900,800italic,900italic,700,700italic);
+
+/*masthead*/
+
+.masthead {
+    background-color: black;
+    width: 100%;
+    color: white;
+    text-align: center;
+    z-index: 1000000 !important;
+    background-color: #D1D2D4;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+    font-family: "Open Sans", sans-serif;
+    height: 40px;
+    vertical-align: middle;
+    position: fixed;
+    top: 0;
+}
+/*
+8376B6 (purple) 
+D1D2D4 (grey_
+*/
+.masthead *{
+    display: inline;
+    vertical-align: middle;
+}
+
+
+  .masthead .nbn-logo {
+    height: 1.5em;
+      line-height: 1.5em;
+      margin-bottom: 3px;
+}
+    .masthead .nbn-logo img {
+      height: 100%; 
+}
+
+
+.masthead.purple{
+    background-color: #8376B6;
+}
+
+.masthead h1{
+    font-size: 1.2em;
+    font-weight: 400;
+    
+    line-height: 40px;
+    height: 40px;
+}
+.masthead h2{
+    font-size: 1.2em;
+    font-weight: 300;
+    
+    line-height: 40px;
+    height: 40px;
+}
+
+body {
+  font-family: "Merriweather Sans";
+}
+
+@media screen and (min-width: 992px) {
+
+  .vertical-center {
+  display: flex;
+  align-items: center;
+  }
+
+}
+
+.main-column{
+    margin-top: 45px;
+}
+
+section:not(:first-of-type){
+    border-top: 4px solid black;
+    padding-top: 10px;
+}
+
+.row{
+  margin: 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px #aaaaaa solid;
+}
+
+.row.no-border{
+    border-bottom: none;
+}
+
+.row:last-of-type{
+  border-bottom: none;
+}
+
+
+article h1{
+    font-family: "Raleway";
+    font-weight: 700;
+    letter-spacing: 1.25;
+}
+
+article h2{
+    font-family: "Merriweather", "Garamond", "Georgia", serif;
+    font-size: 1.25em;
+    line-height: 1.5em;
+    font-weight: 100;
+}
+
+article a{
+    color: #D1D2D4;
+}
+
+.byline{
+    font-size: 1.1em;
+}
+
+.article-summary{
+    font-weight: 200;
+    font-size: 1em;
+    font-family: "Merriweather", "Garamond", "Georgia", serif;
+}
+
+.section-name{
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1; 
+  font-weight: 700;
+}
+
+.caption{
+  font-size: 0.8em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: lighter;
+  text-align: right;
+  color: #666666;
+  line-height: 1.8em;
+}
+
+.large-feature{
+  border-bottom: #aaaaaa 1px solid;
+  padding-bottom: 3px;
+}
+
+.copyright-text{
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    font-size: 0.75em;
+    
+}
+
+    .article-block-with-border-bottom {
+        border-bottom: 1px #aaaaaa solid;
+        margin-bottom: 20px;
+        padding-bottom: 0;
+    }
+
+
+@media screen and (min-width: 992px){
+
+    .article-block-with-border {
+        border-right: 1px #aaaaaa solid;
+    }
+
+    .article-block-with-border:last-of-type {
+        border-right: none;
+    }
+    
+    .article-block-with-border-left{
+        border-left: 1px #aaaaaa solid;
+    }
+
+    .article-block{
+        min-height: 172px;
+    }
+
+}
+
+@media screen and (max-width: 991px){
+  .article-block-with-border{
+    border-bottom: 1px #aaaaaa solid;
+    margin-bottom: 15px;
+  }
+    
+    .article-block-with-border:last-of-type {
+        border-bottom: none;
+    }
+    
+    .article-block-with-border-left{
+        border-top: 1px #aaaaaa solid;
+        padding-top: 15px;
+    }
+    
+}
+
+.verticalcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.horiz-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#img1 {
+  width: 50%;
+}
+
+
+#img2 {
+  width: 50%;
+}
