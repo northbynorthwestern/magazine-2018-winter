@@ -77,7 +77,7 @@ function onLoad(data, tabletop) {
 			related_right_date: stories[x]['RELATED-RIGHT-DATE']
 		}
 
-    const fileName = './fall/index.html';
+    const fileName = './dist/index.html';
     var stream = fs.createWriteStream(fileName);
 
 		if (context.media_type == 'photo'){
