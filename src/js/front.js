@@ -5,7 +5,7 @@ var mkdirp = require('mkdirp');
 var prettifyHtml = require('prettify-html');
 
 //grab spreadsheet
-var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1p801fUTp-APPQYt5eh4uFoGjdChwwBwVihHVS-Y6X0Y/edit?usp=sharing'
+var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1o6wxVTJO8X5rS0fenEygLEYyvZrELOfB9Stt_UEZ-V8/edit?usp=sharing'
 
 //initialize spreadsheet
 Tabletop.init( { key: publicSpreadsheetURL, callback: onLoad});

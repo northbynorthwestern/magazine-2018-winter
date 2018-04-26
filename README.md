@@ -1,4 +1,4 @@
-# mag-rig
+# magazine-2018-winter
 Static site generator for creating the online version of NBN's quarterly magazine.
 
 ### To Use:
@@ -6,8 +6,8 @@ Static site generator for creating the online version of NBN's quarterly magazin
 2. Ensure `dist` folder exists in root directory. The directory should contain an empty `index.html`, global styling in `universal.css` and two files for video playing on iPhones in `vidInline/` only.
 3. Populate a google spreadsheet with specific columns explained below. [See spreadsheet example.](https://docs.google.com/spreadsheets/d/1p801fUTp-APPQYt5eh4uFoGjdChwwBwVihHVS-Y6X0Y/edit?usp=sharing)
 4. Grab shared URL from the spreadsheet for [Tabletop.js](https://github.com/jsoma/tabletop) in `main.js` and `front.js`. Read documentation for more information.
-3. Run `node src/js/main.js` to generate file structure in `dist` folder
-4. Run `node src/js/front.js` to generate content-rich snippets for each article for the front page (script autopopulates hed, dek, author, media, and url for each article. Formatting of front page display  still has to (and should) be done manually).
+5. Run `npm run run-script` to generate file structure in `dist` folder as well as content-rich snippets for each article for the front page (script autopopulates hed, dek, author, media, and url for each article. Formatting of front page display  still has to (and should) be done manually).
+
 
 #### Spreadsheet Setup
 The following sections must be included to generate the entire magazine correctly:

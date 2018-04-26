@@ -10,7 +10,7 @@ var prettifyHtml = require('prettify-html');
 // const archiePipe = require('archieml-pipe').default;
 
 //grab spreadsheet
-var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1p801fUTp-APPQYt5eh4uFoGjdChwwBwVihHVS-Y6X0Y/edit?usp=sharing'
+var publicSpreadsheetURL = 'https://docs.google.com/spreadsheets/d/1o6wxVTJO8X5rS0fenEygLEYyvZrELOfB9Stt_UEZ-V8/edit?usp=sharing'
 
 //initialize spreadsheet
 Tabletop.init( { key: publicSpreadsheetURL, callback: onLoad});
@@ -30,20 +30,18 @@ var imgHtml =
 			  "gtag('config', 'UA-100076603-1');"+
 			"</script>"+
 
-	    "<meta property='og:site_name' content='North by Northwestern Fall 2017 Magazine' />"+
+	    "<meta property='og:site_name' content='North by Northwestern Winter 2018 Magazine' />"+
 	    "<meta property='fb:app_id' content='829210430557671'/>"+
 			"<meta property='og:url'                content='http://apps.northbynorthwestern.com/magazine/2017/fall/{{section}}/{{slug}}/' />"+
 	    "<meta property='og:type' content='article' />"+
 	    "<meta property='og:title' content='{{title}}' />"+
-	    "<meta property='og:description' content='{{subtitle}}' />"+
-	    "<meta property='og:image' content='http:'apps.northbynorthwestern.com/magazine/2017/fall/{{section}}/{{slug}}/cover_2000.jpg' />"+
 	    "<meta name='author' content='{{byline}}' />"+
 	    "<meta name='twitter:card' content='summary_large_image' />"+
 	    "<meta name='twitter:site' content='@nbn_tweets' />"+
 	    "<meta charset='utf-8'/>"+
 	    "<meta name='viewport' content='width=device-width+ initial-scale=1'>"+
 
-	    "<title>{{title}} | North by Northwestern Fall 2017 Magazine</title>"+
+	    "<title>{{title}} | North by Northwestern Winter 2018 Magazine</title>"+
 
 	   	"<link rel=stylesheet href='http://apps.northbynorthwestern.com/hungry/styles/22738433.main.css'>"+
 	    "<link rel='stylesheet' href='../../universal.css'>"+
@@ -66,7 +64,7 @@ var imgHtml =
 	"<body>"+
     "<header class='masthead masthead-down'>"+
         "<div class='logo'>"+
-            "<a href='//apps.northbynorthwestern.com/magazine/2017/fall/'><img class=nbn-logo src='http://nbn-housing.s3.amazonaws.com/static/img/nbn-logo.png' alt=''></a>"+
+            "<a href='//apps.northbynorthwestern.com/magazine/2018/winter/'><img class=nbn-logo src='http://nbn-housing.s3.amazonaws.com/static/img/nbn-logo.png' alt=''></a>"+
         "</div>"+
 		"</header>"+
 		"<main>"+
@@ -118,7 +116,7 @@ var imgHtml =
 				    "<a href='../../index.html'> &laquo; Back to magazine </a>"+
 				"</div>"+
 				"<div class='footer-item footer-right'>"+
-				    "<p>&copy; North by Northwestern, November 30, 2017.</p> <p>All rights reserved.</p>"+
+				    "<p>&copy; North by Northwestern, March 12, 2018.</p> <p>All rights reserved.</p>"+
 				"</div>"+
 				"</div>"+
 				"</footer>"+
@@ -343,23 +341,3 @@ function onLoad(data, tabletop) {
 		}
 	}
 }
-
-
-
-
-	//front = copy.FRONT.elements;
-	// for (var x = 0; x < stories.length; ++x) {
-	// 	var title = front[x]['STORY'];
-	// 	var byline = front[x]['AUTHOR'];
-	// 	var preview = front[x]['TEXT'];
-	// 	var media = front[x]['MEDIA'];
-
-	// 	var ctr = document.createElement('DIV');
-	// 	var h = document.createElement('h1');
-	// 	h.innerHTML = title;
-	// 	ctr.appendChild(h)
-	// 	var para = document.createElement('P');
-	// 	para.innerHTML = 'this is a paragraph';                     // Create a <p> element
-		// var t = document.createTextNode('This is a paragraph.');      // Create a text node
-		// para.appendChild(t);                                          // Append the text to <p>
-//document.getElementById('myDIV').appendChild(para);           // Append <p> to <div> with id='myDIV'

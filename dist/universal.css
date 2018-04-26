@@ -404,7 +404,8 @@ main article header.article-meta>.photo-byline{
 }
 
 .blackboard hr{
-    margin: 40px auto;
+    margin: 60px auto;
+    background-color: black;
 }
 /* dropcap */
 
